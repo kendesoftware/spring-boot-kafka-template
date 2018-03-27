@@ -1,0 +1,6 @@
+spring:
+  kafka:
+    bootstrap-servers: kafka:9092
+    auto-create: true
+    consumer:
+      group-id: template

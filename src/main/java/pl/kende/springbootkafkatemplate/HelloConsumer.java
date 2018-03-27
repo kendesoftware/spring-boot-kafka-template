@@ -10,7 +10,10 @@ public class HelloConsumer {
     private static final Logger logger = LoggerFactory.getLogger(HelloConsumer.class);
 
     @KafkaListener(topics = "hello-topic")
-    public void consumeHello(String data) {
+    public void consumeHello(
+            String data
+            // optionally add org.springframework.kafka.support.Acknowledgment with manual ack mode
+    ) {
         logger.info("Received data: {}", data);
     }
 }

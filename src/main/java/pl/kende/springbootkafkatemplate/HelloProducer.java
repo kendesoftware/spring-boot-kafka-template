@@ -17,9 +17,10 @@ public class HelloProducer {
     KafkaTemplate<String, String> kafkaTemplate;
 
     @Scheduled(fixedRate = 1000)
+    // optionally: @org.springframework.transaction.annotation.Transactional <- supports kafka transactions
     public void produceHello() {
         String data = "Hello! " + UUID.randomUUID();
         logger.info("Sending data: {}", data);
-        kafkaTemplate.send("hello-topic", data);
+        kafkaTemplate.send("hello-topic", data); // returns org.springframework.util.concurrent.ListenableFuture. You might want to wait for confirmation.
     }
 }
